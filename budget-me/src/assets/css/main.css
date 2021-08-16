@@ -1,0 +1,43 @@
+:root{
+    --background-color-primary: #FFFFFF;
+    --background-color-secondary: #F2FAFC;
+    --background-color-secondary-2: #CAF0F8;
+    --primary-color: #0077B6;
+    --border-color-light-grey: #E5E5E5;
+
+}
+
+html{
+    
+}
+
+.line{
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid var(--border-color-light-grey); 
+    line-height: 0.1em;
+}
+
+.line span{
+    background:#fff; 
+    padding:0 10px; 
+}
+
+.btn-sign-with-account{
+    border: 1px solid var(--border-color-light-grey);
+    color: #5F5F5F;
+}
+
+.sign-with-email-form{
+    text-align: left;
+    width: 50%;
+    margin: auto;
+}
+
+.btn-primary{
+    background-color: var(--primary-color);
+}
+
+.btn-primary:hover{
+    background-color: #005d8f;
+}
