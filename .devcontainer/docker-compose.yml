@@ -2,19 +2,21 @@ version: '3'
 
 services:
   app:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
       args:
-        # [Choice] Node.js version: 14, 12, 10
-        VARIANT: 14
+        # [Choice] Python version: 3, 3.8, 3.7, 3.6
+        VARIANT: 3
+        # [Choice] Node.js version: none, lts, 16, 14, 12, 10
+        NODE_VERSION: "14"
         # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
         USER_UID: 1000
         USER_GID: 1000
 
     volumes:
       - ..:/workspace:cached
-      
+
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
@@ -22,23 +24,25 @@ services:
     network_mode: service:db
 
     # Uncomment the next line to use a non-root user for all processes.
-    # user: node
+    # user: vscode
 
-    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
-    image: postgres:latest
+    image: mongo:latest
     restart: unless-stopped
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
+      - mongodb-data:/data/db
 
-    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
+    # Uncomment to change startup options
+    # environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: example
+    #  MONGO_INITDB_DATABASE: your-database-here
+
+    # Add "forwardPorts": ["27017"] to **devcontainer.json** to forward MongoDB locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
 volumes:
-  postgres-data:
+  mongodb-data:
