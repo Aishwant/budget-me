@@ -1,10 +1,11 @@
 from rest_framework import serializers
-from budgetmeapi.models import BudgetMeAPI
+from budgetmeapi.models import User
 
-class BudgetMeAPISerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BudgetMeAPI
+        model = User
         fields = ('id',
-                    'title',
-                    'description',
-                    'published')
+                  'email',
+                  'fname',
+                  'lname',
+                  'pwd')
